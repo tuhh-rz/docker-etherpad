@@ -1,0 +1,10 @@
+deployment_system:
+    only:
+        - master
+    tags:
+        - master
+    script:
+        - docker build --no-cache -t local/etherpad:tmp_$CI_PROJECT_ID.$CI_BUILD_ID 10.1
+        - docker tag local/etherpad:tmp_$CI_PROJECT_ID.$CI_BUILD_ID docker.rz.tu-harburg.de:5000/etherpad:latest
+        - docker push docker.rz.tu-harburg.de:5000/etherpad:latest
+        - docker rmi local/etherpad:tmp_$CI_PROJECT_ID.$CI_BUILD_ID
