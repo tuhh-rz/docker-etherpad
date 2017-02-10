@@ -4,9 +4,7 @@ FROM ubuntu:16.04
 ENV ETHERPAD_VERSION master
 
 RUN apt-get update && \
-    apt-get -y upgrade
-    
-RUN apt-get install -y curl unzip nodejs-legacy npm mysql-client && \
+    apt-get install -y curl unzip nodejs-legacy npm mysql-client && \
     rm -r /var/lib/apt/lists/*
 
 WORKDIR /opt/
