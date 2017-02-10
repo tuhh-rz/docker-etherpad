@@ -1,7 +1,7 @@
 # Stable version of etherpad doesn't support npm 2
 FROM ubuntu:16.04
 
-ENV ETHERPAD_VERSION master
+ENV ETHERPAD_VERSION 1.6.0
 
 RUN apt-get update && \
     apt-get install -y curl unzip nodejs-legacy npm mysql-client && \
