@@ -32,18 +32,18 @@ fi
 : ${ETHERPAD_SESSION_KEY:=$(
 		node -p "require('crypto').randomBytes(32).toString('hex')")}
 
-# Check if database already exists
-RESULT=`mysql -u${ETHERPAD_DB_USER} -p${ETHERPAD_DB_PASSWORD} \
-	-hmysql --skip-column-names \
-	-e "SHOW DATABASES LIKE '${ETHERPAD_DB_NAME}'"`
-
-if [ "$RESULT" != $ETHERPAD_DB_NAME ]; then
-	# mysql database does not exist, create it
-	echo "Creating database ${ETHERPAD_DB_NAME}"
-
-	mysql -u${ETHERPAD_DB_USER} -p${ETHERPAD_DB_PASSWORD} -hmysql \
-	      -e "create database ${ETHERPAD_DB_NAME}"
-fi
+## Check if database already exists
+#RESULT=`mysql -u${ETHERPAD_DB_USER} -p${ETHERPAD_DB_PASSWORD} \
+#	-hmysql --skip-column-names \
+#	-e "SHOW DATABASES LIKE '${ETHERPAD_DB_NAME}'"`
+#
+#if [ "$RESULT" != $ETHERPAD_DB_NAME ]; then
+#	# mysql database does not exist, create it
+#	echo "Creating database ${ETHERPAD_DB_NAME}"
+#
+#	mysql -u${ETHERPAD_DB_USER} -p${ETHERPAD_DB_PASSWORD} -hmysql \
+#	      -e "create database ${ETHERPAD_DB_NAME}"
+#fi
 
 if [ ! -f settings.json ]; then
 
