@@ -6,6 +6,8 @@ ENV ETHERPAD_VERSION 1.6.0
 RUN apt-get update && \
     apt-get install -y curl unzip nodejs-legacy npm mysql-client && \
     rm -r /var/lib/apt/lists/*
+    
+RUN apt-get upgrade -y
 
 WORKDIR /opt/
 
