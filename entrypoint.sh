@@ -56,7 +56,7 @@ if [ ! -f settings.json ]; then
 	  "dbType" : "mysql",
 	  "dbSettings" : {
 			    "user"    : "${ETHERPAD_DB_USER}",
-			    "host"    : "mysql",
+			    "host"    : "${MYSQL_PORT_3306_TCP_ADDR},
 			    "password": "${ETHERPAD_DB_PASSWORD}",
 			    "database": "${ETHERPAD_DB_NAME}"
 			  },
