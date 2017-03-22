@@ -1,11 +1,11 @@
 #!/bin/bash
-set -e
+#set -e
 
 if [ -z "$MYSQL_PORT_3306_TCP_ADDR" ]; then
 	echo >&2 'error: missing MYSQL_PORT_3306_TCP environment variable'
 	echo >&2 '  Did you forget to --link some_mysql_container:mysql ?'
 
-	exit 1
+	#exit 1
 fi
 
 # if we're linked to MySQL, and we're using the root user, and our linked
@@ -24,7 +24,7 @@ if [ -z "$ETHERPAD_DB_PASSWORD" ]; then
 	echo >&2
 	echo >&2 '  (Also of interest might be ETHERPAD_DB_USER and ETHERPAD_DB_NAME.)'
 
-	exit 1
+	#exit 1
 fi
 
 : ${ETHERPAD_TITLE:=Etherpad}
