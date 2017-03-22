@@ -81,4 +81,6 @@ if [ ! -f settings.json ]; then
 	EOF
 fi
 
+cat settings.json
+
 exec "$@"
