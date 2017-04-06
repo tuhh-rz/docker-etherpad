@@ -82,5 +82,7 @@ if [ ! -f settings.json ]; then
 fi
 
 cat settings.json
+cat /etc/hosts
+ping -c3 db
 
 exec "$@"
