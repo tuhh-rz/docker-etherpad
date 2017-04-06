@@ -81,8 +81,8 @@ if [ ! -f settings.json ]; then
 	EOF
 fi
 
-cat settings.json
-cat /etc/hosts
-ip a
+#cat settings.json
+#cat /etc/hosts
+#ip a
 
 exec "$@"
