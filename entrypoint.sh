@@ -83,6 +83,6 @@ fi
 
 cat settings.json
 cat /etc/hosts
-ping -c3 db
+ip a
 
 exec "$@"
