@@ -93,7 +93,7 @@ deploy:branches:1.6.0:
     script: *deploy_branches_script_definition
     
     
-build:1.6.2:
+build:1.6.1:
     stage: build
     retry: 2
     only:
@@ -101,23 +101,23 @@ build:1.6.2:
     tags:
         - build
     variables:
-        VERSION: '1.6.2'
+        VERSION: '1.6.1'
         VARIANT: ''
     before_script: *build_before_script_definition
     script: *build_script_definition
 
-deploy:1.6.2:
+deploy:1.6.1:
     stage: deploy
     tags:
         - deploy
     only:
         - master
     variables:
-        VERSION: '1.6.2'
+        VERSION: '1.6.1'
         VARIANT: ''
     script: *deploy_script_definition 
 
-build:branches:1.6.2:
+build:branches:1.6.1:
     stage: build
     retry: 2
     only:
@@ -127,12 +127,12 @@ build:branches:1.6.2:
     tags:
         - build
     variables:
-        VERSION: '1.6.2'
+        VERSION: '1.6.1'
         VARIANT: ''
     before_script: *build_branches_before_script_definition
     script: *build_branches_script_definition
 
-deploy:branches:1.6.2:
+deploy:branches:1.6.1:
     stage: deploy
     tags:
         - deploy
@@ -141,6 +141,6 @@ deploy:branches:1.6.2:
     except:
         - master
     variables:
-        VERSION: '1.6.2'
+        VERSION: '1.6.1'
         VARIANT: ''    
     script: *deploy_branches_script_definition
