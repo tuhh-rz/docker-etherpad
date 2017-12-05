@@ -21,6 +21,7 @@ RUN bin/installDeps.sh && rm settings.json
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x "/entrypoint.sh"
 
+RUN npm install ep_adminpads
 
 RUN sed -i 's/^node/exec\ node/' bin/run.sh
 
