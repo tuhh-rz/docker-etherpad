@@ -22,6 +22,11 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x "/entrypoint.sh"
 
 RUN npm install ep_adminpads
+RUN npm install ep_page_view
+RUN npm install ep_headings
+RUN npm install ep_markdown
+RUN npm install ep_mediawiki
+
 # RUN npm install ep_user_pad_frontend
 
 RUN sed -i 's/^node/exec\ node/' bin/run.sh
