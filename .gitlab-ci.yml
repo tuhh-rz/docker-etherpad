@@ -6,12 +6,12 @@ variables:
     script:  &build_script_definition
         - pwd
         - sudo docker build --no-cache --pull -t "${CONTAINER_RELEASE_IMAGE}":"${VERSION}${VARIANT:+-$VARIANT}" "${VERSION}"/"${VARIANT}"
-        
+
 .build_before_script_template:
     before_script:  &build_before_script_definition
         - pwd
         - git submodule update --init --recursive
-        
+
 .deploy_script_template:
     script:  &deploy_script_definition
         - pwd
@@ -22,12 +22,12 @@ variables:
     script:  &build_branches_script_definition
         - pwd
         - sudo docker build --pull -t "${CONTAINER_RELEASE_IMAGE}":"${VERSION}${VARIANT:+-$VARIANT}"_"${CI_COMMIT_REF_NAME}" "${VERSION}"/"${VARIANT}"
-        
+
 .build_branches_before_script_template:
     before_script:  &build_branches_before_script_definition
         - pwd
         - git submodule update --init --recursive
-        
+
 .deploy_branches_script_template:
     script:  &deploy_branches_script_definition
         - pwd
@@ -37,7 +37,7 @@ stages:
     - build
     - deploy
 
-.build:1.7:
+build:1.7:
     stage: build
     retry: 2
     only:
@@ -50,7 +50,7 @@ stages:
     before_script: *build_before_script_definition
     script: *build_script_definition
 
-.deploy:1.7:
+deploy:1.7:
     stage: deploy
     tags:
         - deploy
@@ -59,9 +59,9 @@ stages:
     variables:
         VERSION: '1.7'
         VARIANT: ''
-    script: *deploy_script_definition 
+    script: *deploy_script_definition
 
-.build:branches:1.7:
+build:branches:1.7:
     stage: build
     retry: 2
     only:
@@ -76,7 +76,7 @@ stages:
     before_script: *build_branches_before_script_definition
     script: *build_branches_script_definition
 
-.deploy:branches:1.7:
+deploy:branches:1.7:
     stage: deploy
     tags:
         - deploy
