@@ -1,12 +1,12 @@
 # Stable version of etherpad doesn't support npm 2
-FROM ubuntu:16.04
+FROM debian:jessie
+MAINTAINER Tony Motakis <tvelocity@gmail.com>
 
-ENV ETHERPAD_VERSION 1.6.0
+ENV ETHERPAD_VERSION 1.7.5
 
 RUN apt-get update && \
-    apt-get install -y curl unzip nodejs-legacy npm mysql-client
-    
-RUN apt-get upgrade -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y curl unzip nodejs-legacy npm mysql-client node-pg postgresql-client && \
+    rm -r /var/lib/apt/lists/*
 
 WORKDIR /opt/
 
@@ -14,12 +14,22 @@ RUN curl -SL \
     https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.zip \
     > etherpad.zip && unzip etherpad && rm etherpad.zip && \
     mv etherpad-lite-${ETHERPAD_VERSION} etherpad-lite
+    
+COPY ./src/templates/* /opt/etherpad-lite/src/templates/
 
 WORKDIR etherpad-lite
 
 RUN bin/installDeps.sh && rm settings.json
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x "/entrypoint.sh"
+
+RUN npm install ep_adminpads
+RUN npm install ep_page_view
+RUN npm install ep_headings
+RUN npm install ep_markdown
+RUN npm install ep_mediawiki
+
+# RUN npm install ep_user_pad_frontend
 
 RUN sed -i 's/^node/exec\ node/' bin/run.sh
 
