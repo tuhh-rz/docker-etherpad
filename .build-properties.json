@@ -1,7 +1,0 @@
-{
-  "docker-tags": {
-    "1.6": {
-      "build-branch": "master"
-    }
-  }
-}
