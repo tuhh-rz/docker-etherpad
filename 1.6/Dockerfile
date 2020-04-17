@@ -23,7 +23,7 @@ WORKDIR /opt/
 RUN curl -SL \
     https://github.com/ether/etherpad-lite/archive/${VERSION}.zip \
     > etherpad.zip && unzip etherpad && rm etherpad.zip && \
-    mv etherpad-lite-${ETHERPAD_VERSION} etherpad-lite
+    mv etherpad-lite-${VERSION} etherpad-lite
 
 COPY ./src/templates/* /opt/etherpad-lite/src/templates/
 
