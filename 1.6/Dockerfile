@@ -21,10 +21,10 @@ RUN apt-get install -y curl unzip nodejs-legacy npm mysql-client node-pg postgre
 WORKDIR /opt/
 
 RUN curl -SL \
-    https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.zip \
+    https://github.com/ether/etherpad-lite/archive/${VERSION}.zip \
     > etherpad.zip && unzip etherpad && rm etherpad.zip && \
     mv etherpad-lite-${ETHERPAD_VERSION} etherpad-lite
-    
+
 COPY ./src/templates/* /opt/etherpad-lite/src/templates/
 
 WORKDIR etherpad-lite

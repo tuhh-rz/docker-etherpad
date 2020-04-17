@@ -48,7 +48,7 @@ stages:
     - build
     - deploy
 
-.build:1.7:
+.build:1.8:
     stage: build
     retry: 2
     only:
@@ -56,23 +56,23 @@ stages:
     tags:
         - build
     variables:
-        VERSION: '1.7'
+        VERSION: '1.8'
         VARIANT: ''
     before_script: *build_before_script_definition
     script: *build_script_definition
 
-.deploy:1.7:
+.deploy:1.8:
     stage: deploy
     tags:
         - deploy
     only:
         - master
     variables:
-        VERSION: '1.7'
+        VERSION: '1.8'
         VARIANT: ''
     script: *deploy_script_definition
 
-.build:branches:1.7:
+.build:branches:1.8:
     stage: build
     retry: 2
     only:
@@ -82,12 +82,12 @@ stages:
     tags:
         - build
     variables:
-        VERSION: '1.7'
+        VERSION: '1.8'
         VARIANT: ''
     before_script: *build_branches_before_script_definition
     script: *build_branches_script_definition
 
-.deploy:branches:1.7:
+.deploy:branches:1.8:
     stage: deploy
     tags:
         - deploy
@@ -96,7 +96,7 @@ stages:
     except:
         - master
     variables:
-        VERSION: '1.7'
+        VERSION: '1.8'
         VARIANT: ''    
     script: *deploy_branches_script_definition
     
