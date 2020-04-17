@@ -1,7 +1,7 @@
 {
     "active": true,
     "version-check": {
-        "active": false,
+        "active": true,
         "master_key": "Etherpad",
         "version_digits_in_key": 2
     },
@@ -16,6 +16,9 @@
     ],
     "image-tags": {
         "1.6": {
+            "action": "build"
+        },
+        "1.7": {
             "action": "build"
         }
     }

@@ -1,11 +1,21 @@
 # Stable version of etherpad doesn't support npm 2
 FROM debian:jessie
-MAINTAINER Tony Motakis <tvelocity@gmail.com>
 
-ENV ETHERPAD_VERSION 1.6.1
+ARG VERSION=${VERSION}
+ENV VERSION=$VERSION
+RUN echo $VERSION
+
+ARG DOWNLOAD=${DOWNLOAD}
+ENV DOWNLOAD=$DOWNLOAD
+RUN echo $DOWNLOAD
+
+# Let the conatiner know that there is no tty
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y curl unzip nodejs-legacy npm mysql-client node-pg postgresql-client && \
+    apt-get upgrade -qy
+
+RUN apt-get install -y curl unzip nodejs-legacy npm mysql-client node-pg postgresql-client && \
     rm -r /var/lib/apt/lists/*
 
 WORKDIR /opt/
