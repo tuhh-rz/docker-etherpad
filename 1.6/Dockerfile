@@ -1,6 +1,6 @@
 # Stable version of etherpad doesn't support npm 2
 #FROM debian:jessie
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
 ARG VERSION=${VERSION}
 ENV VERSION=$VERSION
