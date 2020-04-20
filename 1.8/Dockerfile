@@ -1,5 +1,5 @@
 # Stable version of etherpad doesn't support npm 2
-FROM debian:jessie
+FROM ubuntu:18.04
 
 ARG VERSION=${VERSION}
 ENV VERSION=$VERSION
@@ -15,21 +15,29 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get upgrade -qy
 
-RUN apt-get install -y curl unzip nodejs-legacy npm mysql-client node-pg postgresql-client && \
-    rm -r /var/lib/apt/lists/*
+RUN apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    gzip \
+    libssl-dev \
+    pkg-config \
+    python
+
+RUN rm -r /var/lib/apt/lists/*
+
+# 9.x is DEPRECATED!!!!
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
 
 WORKDIR /opt/
 
-RUN curl -SL \
-    https://github.com/ether/etherpad-lite/archive/${VERSION}.zip \
-    > etherpad.zip && unzip etherpad && rm etherpad.zip && \
-    mv etherpad-lite-${ETHERPAD_VERSION} etherpad-lite
+RUN git clone -b ${VERSION} https://github.com/ether/etherpad-lite.git && cd etherpad-lite
 
-COPY ./src/templates/* /opt/etherpad-lite/src/templates/
+WORKDIR /opt/etherpad-lite
 
-WORKDIR etherpad-lite
-
-RUN bin/installDeps.sh && rm settings.json
+# RUN bin/installDeps.sh && rm settings.json
+# RUN rm settings.json
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x "/entrypoint.sh"
 
@@ -43,8 +51,8 @@ RUN npm install ep_mediawiki
 
 RUN sed -i 's/^node/exec\ node/' bin/run.sh
 
-VOLUME /opt/etherpad-lite/var
-RUN ln -s var/settings.json settings.json
+# VOLUME /opt/etherpad-lite/var
+# RUN ln -s var/settings.json settings.json
 
 EXPOSE 9001
 ENTRYPOINT ["/entrypoint.sh"]
