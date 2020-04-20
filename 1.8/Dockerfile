@@ -38,6 +38,10 @@ WORKDIR /opt/etherpad-lite
 
 # RUN bin/installDeps.sh && rm settings.json
 # RUN rm settings.json
+
+RUN apt-get install -y \
+    mysql-client
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x "/entrypoint.sh"
 
