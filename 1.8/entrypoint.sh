@@ -56,6 +56,9 @@ if [ "$ETHERPAD_DB_TYPE" == 'postgres' ]; then
     fi
 fi
 
+#
+#  https://github.com/ether/etherpad-lite/blob/1.8.0/settings.json.docker
+#
 if [ ! -f settings.json ]; then
 
     cat <<-EOF >settings.json
@@ -91,7 +94,5 @@ if [ ! -f settings.json ]; then
 	}
 	EOF
 fi
-
-export NODE_ENV=production
 
 exec "$@"
