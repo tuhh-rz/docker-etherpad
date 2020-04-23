@@ -58,8 +58,8 @@ stages:
 build:1.8:
     stage: build
     retry: 2
-    only:
-        - master
+    rules:
+        - if: '$CI_COMMIT_REF_NAME == "master"'
     tags:
         - build
     variables:
@@ -73,8 +73,8 @@ deploy:1.8:
     needs: ["build:1.8"]
     tags:
         - deploy
-    only:
-        - master
+    rules:
+        - if: '$CI_COMMIT_REF_NAME == "master"'
     variables:
         VERSION: '1.8'
         VARIANT: ''
@@ -83,10 +83,8 @@ deploy:1.8:
 build:branches:1.8:
     stage: build
     retry: 2
-    only:
-        - branches
-    except:
-        - master
+    rules:
+        - if: '$CI_COMMIT_REF_NAME != "master"'
     tags:
         - build
     variables:
@@ -100,10 +98,8 @@ deploy:branches:1.8:
     needs: ["build:branches:1.8"]
     tags:
         - deploy
-    only:
-        - branches
-    except:
-        - master
+    rules:
+        - if: '$CI_COMMIT_REF_NAME != "master"'
     variables:
         VERSION: '1.8'
         VARIANT: ''
