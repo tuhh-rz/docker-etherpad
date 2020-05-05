@@ -18,7 +18,7 @@ variables:
     # - if [[ -z $download ]] || [[ $download == "null" ]]; then exit 1; fi
 
     - echo $version
-    - sudo docker build --build-arg DOWNLOAD="${download}" --build-arg VERSION="${version}" --no-cache --pull -t "${CONTAINER_RELEASE_IMAGE}":"${VERSION}${VARIANT:+-$VARIANT}" "${VERSION}"/"${VARIANT}"
+    # - sudo docker build --build-arg DOWNLOAD="${download}" --build-arg VERSION="${version}" --no-cache --pull -t "${CONTAINER_RELEASE_IMAGE}":"${VERSION}${VARIANT:+-$VARIANT}" "${VERSION}"/"${VARIANT}"
 
 .build_branches_script_template:
   script: &build_branches_script_definition
