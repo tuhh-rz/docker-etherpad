@@ -3,7 +3,7 @@
     "version-check": {
         "active": true,
         "master_key": "Etherpad",
-        "sub_key": "",
+        "sub_key": "Etherpad",
         "version_digits_in_key": 2
     },
     "registries": [{
