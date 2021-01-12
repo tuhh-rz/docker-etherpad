@@ -42,7 +42,8 @@ RUN apt-get install -y nodejs
 #
 # EXAMPLE:
 #   ETHERPAD_PLUGINS="ep_codepad ep_author_neat"
-ARG ETHERPAD_PLUGINS="ep_adminpads ep_page_view ep_headings ep_markdown ep_mediawiki"
+# ARG ETHERPAD_PLUGINS="ep_adminpads ep_page_view ep_headings ep_markdown ep_mediawiki"
+ARG ETHERPAD_PLUGINS="ep_adminpads ep_headings ep_markdown ep_mediawiki"
 
 # Set the following to production to avoid installing devDeps
 # this can be done with build args (and is mandatory to build ARM version)
