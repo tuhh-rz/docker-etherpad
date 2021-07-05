@@ -1,5 +1,5 @@
 # Stable version of etherpad doesn't support npm 2
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ARG VERSION=${VERSION}
 ENV VERSION=$VERSION
@@ -14,7 +14,7 @@ LABEL \
   de.tuhh.ci_commit_short_sha=$CI_COMMIT_SHORT_SHA \
   de.tuhh.build-date=$BUILD_DATE \
   de.tuhh.version=$VERSION \
-  de.tuhh.eol=20230501
+  de.tuhh.eol=20250501
 
 
 # Let the conatiner know that there is no tty
@@ -38,7 +38,7 @@ RUN apt-get install -y \
 RUN rm -r /var/lib/apt/lists/*
 
 # 9.x is DEPRECATED!!!!
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 
 
